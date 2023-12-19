@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register </title>
+     <link rel="stylesheet" href="{% static "./css1.css" %}">
+     <script src="{% static "./java1.js" %}"></script>
+</head>
+<body>
+   <form action="{% url "login" %}" method="post" name="frm" class="signf">
+    {% csrf_token %}
+    <fieldset>
+        <legend >Login Form </legend>
+        {%if msg %}
+        <span style="color:red;">{{msg}}</span>
+      {% endif %}<br>
+            <label for="email">Email</label><br>
+            <input type="email" name="email"  onblur="Cemail();" required ><br>
+            <span class="sign" id="email"></span>
+            <br>
+            
+            <label for="password">Password</label><br>
+            <input type="password" name="password" required>
+            <br>
+            <span class="sign" id="password"></span>
+            <br>
+            <input type="submit" value="Login"> <br><br>
+            <a href="{%url 'register'%}"><input type="button" value="Register"></a>
+            
+    </fieldset>
+        
+   </form>
+    
+</body>
+</html>

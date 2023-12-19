@@ -25,8 +25,11 @@
             <span class="sign" id="lastname"></span><br>
 
             <label for="email">Email</label><br>
-            <input type="email" name="email"  onblur="Cemail();required" ><br>
+            <input type="email" name="email"  onblur="Cemail();" required ><br>
             <span class="sign" id="email"></span>
+            {%if msg %}
+              <span style="color:red;">{{msg}}</span>
+            {% endif %}
             <br>
             <label>Gender</label><br>
             <br>
@@ -56,8 +59,9 @@
             
             <label for="submit"></label>
             <br><br>
-            <input type="submit" value="Register">
-            <button formaction="./tmp.html">login</button>
+            
+            <input type="submit" value="Register"><br><br>
+            <a href="{%url 'login'%}"><input type="button" value="Login"></a>
             
     </fieldset>
         

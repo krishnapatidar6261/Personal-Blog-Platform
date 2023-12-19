@@ -7,9 +7,11 @@
 </head>
 <body>
     <input type="button" value="Admin Actions"><br><br>
+    <a href="{%url 'register'%}"><input type="button" value="Register"></a>
+    {%for i in blogs%}
     <b><hr></b>
-    <h3>Title</h3>
-    <h5>Description</h5>
-    
+    <h3>Title: {{i.title}}</h3>
+    <p>Description: {{i.desc|truncatechars:10 }}<a href="{%url 'detailView' i.pk%}">See more</a></p>
+    {% endfor %}    
 </body>
 </html>

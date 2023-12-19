@@ -12,3 +12,12 @@ class User(models.Model):
     def __str__(self) :
         return self.email
     
+class Blog(models.Model):
+    user=models.ForeignKey(User, on_delete=models.CASCADE)
+    title=models.TextField()
+    desc=models.TextField()
+    posted=models.DateTimeField(auto_now_add=True)
+
+    
+    def __str__(self) :
+        return self.title

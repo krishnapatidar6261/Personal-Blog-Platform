@@ -18,7 +18,7 @@ function lname(){
     var reg=/^[A-Za-z]+$/;
     if(f=="")
     {
-        document.getElementById("lastname").innerHTML="Please Enter First Name"
+        document.getElementById("lastname").innerHTML="Please Enter Last Name"
     }
     else if(!reg.test(f))
     {
