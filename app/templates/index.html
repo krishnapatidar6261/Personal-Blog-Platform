@@ -6,8 +6,9 @@
     <title>All Blog With Short Title</title>
 </head>
 <body>
-    <input type="button" value="Admin Actions"><br><br>
+   <a href="{%url 'allUser'%}" ><input type="button" value="Admin Actions"></a><br><br>
     <a href="{%url 'register'%}"><input type="button" value="Register"></a>
+    <a href="{%url 'login'%}"><input type="button" value="Login"></a>
     {%for i in blogs%}
     <b><hr></b>
     <h3>Title: {{i.title}}</h3>

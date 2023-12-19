@@ -10,19 +10,20 @@
         <title></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
     </head>
     <body>
-        <input type="button" value="Admin Actions"><br><br>
-        <b><hr></b>
-        <p><b>Title: </b>{{blogs.title}}</p>
-        <p><b>Posted By: </b>{{blogs.user.fname}} {{blogs.user.lname}}, {{blogs.posted}}</p>
+        <h3>All User</h3>
+        <a href="{%url 'register'%}"><input type="button" value="Register Blog User"></a>
+        <a href="{%url 'index'%}"><input type="button" value="Home Page"></a>
 
-        <p><b>Description:</b> {{blogs.desc}}</p>
-        <p><b>Contact:</b> {{blogs.user.email}}</p>
-        <a href="{%url 'index'%}"><input type="button" value="Back"></a>
+        {%for i in user%}
+    <b><hr></b><br>
+    <b>Name:</b> {{i.fname}} {{i.lname}}
+    <a href="{%url 'update' i.pk%}"><input type="button" value="Update"></a>
+    <a href="{%url 'delete' i.pk%}"><input type="button" value="Delete" i.pk></a>
 
-
-
-
+    <p><b>Email:</b> {{i.email }}
+    {% endfor %}    
     </body>
 </html>

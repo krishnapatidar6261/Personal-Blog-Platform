@@ -3,7 +3,6 @@ from .models import *
 # Create your views here.
 def index(request):
     blogs=Blog.objects.all()
-
     return render(request,'index.html',{'blogs':blogs})
 
 
@@ -28,7 +27,6 @@ def register(request):
             else:
                 msg="Password and Confirm Password Does Not Matched"
                 return render(request,'register.html',{'msg':msg})
-
     else:
         
         return render(request,'register.html')
@@ -57,7 +55,7 @@ def blogerIndex(request):
             title=request.POST['title'],
             desc=request.POST['desc'],
         )
-        return redirect('index')
+        return redirect('blogerIndex')
             
     else:
         return render(request,'blogerIndex.html')
@@ -70,5 +68,36 @@ def logout(request):
         return redirect('index')
 
 def detailView(request,pk):
-    blogs=Blog.objects.get(pk=pk)
-    return render(request,'detailView.html',{'blogs':blogs})
+    try:
+        blogs=Blog.objects.get(pk=pk)
+        return render(request,'detailView.html',{'blogs':blogs})
+    except:
+        return render(request,'404.html')
+
+def allUser(request):
+    user=User.objects.all()
+    return render(request,'allUser.html',{'user':user})
+
+def update(request,pk):
+    try:
+        user=User.objects.get(pk=pk)
+        if request.method=="POST":
+            user.email=request.POST['email']
+            user.fname=request.POST['fname']
+            user.lname=request.POST['lastname']
+            user.gender=request.POST['gender']
+            user.addr=request.POST['address']
+
+            user.save()
+            return redirect('allUser')
+        else:
+            return render(request,'update.html',{'user':user})
+    except:
+        return render(request,'404.html')
+def delete(request,pk):
+    try:
+        user=User.objects.get(pk=pk)
+        user.delete()
+        return redirect('allUser')
+    except:
+        return render(request,'404.html')
