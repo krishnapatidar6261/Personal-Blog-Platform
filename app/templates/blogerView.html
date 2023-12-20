@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Posts</title>
+</head>
+<body>
+    <b>Total Post {{blogs.count}}</b>
+    {% if blogs.count == 0 %}
+      <h3> You Does Not Posted Any Blog</h3>
+    {% else %}
+
+    {%for i in blogs%}
+    <b><hr></b>
+    <b>Title: {{i.title}}</b>
+    <a href="{%url 'blogerDeletePost' i.pk%}"><input type="button" value="Delete"></a>
+
+    <p>Description: {{i.desc }}</p>
+
+    {% endfor %}   
+    {% endif %}
+    <a href="{%url 'blogerIndex'%}"><input type="button" value="Back"></a>
+ 
+</body>
+</html>

@@ -74,30 +74,14 @@ def detailView(request,pk):
     except:
         return render(request,'404.html')
 
-def allUser(request):
-    user=User.objects.all()
-    return render(request,'allUser.html',{'user':user})
-
-def update(request,pk):
-    try:
-        user=User.objects.get(pk=pk)
-        if request.method=="POST":
-            user.email=request.POST['email']
-            user.fname=request.POST['fname']
-            user.lname=request.POST['lastname']
-            user.gender=request.POST['gender']
-            user.addr=request.POST['address']
-
-            user.save()
-            return redirect('allUser')
-        else:
-            return render(request,'update.html',{'user':user})
-    except:
-        return render(request,'404.html')
-def delete(request,pk):
-    try:
-        user=User.objects.get(pk=pk)
-        user.delete()
-        return redirect('allUser')
-    except:
-        return render(request,'404.html')
+def blogerDeletePost(request,pk):
+    blog=Blog.objects.get(pk=pk)
+    blog.delete()
+    return redirect('BlogerView')
+     
+ 
+def BlogerView(request):
+    user=User.objects.get(email=request.session['email'])
+    blogs=Blog.objects.filter(user=user)
+    
+    return render(request,'blogerview.html',{'blogs':blogs})

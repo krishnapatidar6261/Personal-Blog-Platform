@@ -6,13 +6,12 @@
     <title>All Blog With Short Title</title>
 </head>
 <body>
-   <a href="{%url 'allUser'%}" ><input type="button" value="Admin Actions"></a><br><br>
     <a href="{%url 'register'%}"><input type="button" value="Register"></a>
     <a href="{%url 'login'%}"><input type="button" value="Login"></a>
     {%for i in blogs%}
     <b><hr></b>
     <h3>Title: {{i.title}}</h3>
-    <p>Description: {{i.desc|truncatechars:10 }}<a href="{%url 'detailView' i.pk%}">See more</a></p>
+    <p>Description: {{i.desc|truncatechars:10 }} <a href="{%url 'detailView' i.pk%}">See more</a></p>
     {% endfor %}    
 </body>
 </html>
